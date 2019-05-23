@@ -1,4 +1,4 @@
-import { CREATE_NOTE, LOAD_ALL_NOTES } from "../actions/index";
+import { CREATE_NOTE } from "../actions/index";
 
 function rootReducer(state = { allNotes: [] }, action) {
   if (action.type === CREATE_NOTE) {
@@ -8,11 +8,7 @@ function rootReducer(state = { allNotes: [] }, action) {
       allNotes: state.allNotes.concat(action.payload)
       //allNotes: [...oldState, newNote]
     });
-  } else if (action.type === LOAD_ALL_NOTES) {
-    return Object.assign({}, state, {
-        allNotes: action.payload
-      })
-  }
+  } 
   return state;
 }
 

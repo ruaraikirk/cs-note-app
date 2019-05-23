@@ -1,8 +1,8 @@
 import React from "react";
-import { Editor, EditorState, convertToRaw, bindActionCreators} from "draft-js";
+import { Editor, EditorState, convertToRaw} from "draft-js";
 import { connect } from "react-redux";
 import uuidv1 from "uuid";
-import * as Actions from "../actions/index";
+import createNote from "../actions/index";
 
 class NoteEditor extends React.Component {
   constructor(props) {
@@ -71,14 +71,10 @@ class NoteEditor extends React.Component {
   }
 }
 
-function mapStateToProps(state, props) {
-  return {
-    notes: state.notes.allNotes,
-  }
-}
-
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(Actions, dispatch);
+  return {
+    createNote: note => dispatch(createNote(note))
+  };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NoteEditor)
+export default connect(null, mapDispatchToProps)(NoteEditor)
