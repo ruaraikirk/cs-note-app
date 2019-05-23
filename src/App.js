@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import NoteEditor from "./components/NoteEditor";
+
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as Actions from '../src/actions'
+
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        CS NOTES
+        <div>
+          <NoteEditor />
+        </div>
+      </div>
+    );
+  }
 }
 
-export default App;
+//export default App;
+function mapStateToProps(state, props) {
+  return {
+    notes: state.notes.allNotes
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(Actions, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
