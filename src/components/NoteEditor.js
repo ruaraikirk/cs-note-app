@@ -57,10 +57,10 @@ class NoteEditor extends React.Component {
       let title = this.state.noteTitle;
       let contentState = this.state.editorState.getCurrentContent();
       this.props.updateNote({ id, title, contentState });
-      this.setState({
+      /*this.setState({
         noteTitle: "",
         editorState: EditorState.createEmpty()
-      });
+      });*/
     } else {
       let id =  uuidv1();
       let title = this.state.noteTitle;
@@ -70,10 +70,6 @@ class NoteEditor extends React.Component {
         noteTitle: "",
         editorState: EditorState.createEmpty()
       });
-      this.setState({
-        noteTitle: "",
-        editorState: EditorState.createEmpty()
-      })
     }
     /*let displayedNote = this.props.displayedNote
     console.log("displayedNote: ", displayedNote)
@@ -115,9 +111,16 @@ class NoteEditor extends React.Component {
     });
   };
 
+  createNewNote = () => {
+    console.log("Create new note function called")
+	}
+
   render() {
     return (
       <div>
+        <div>
+					<button onClick={this.createNewNote}>Create New</button>
+				</div>
         <span>
           <input
             type="text"
