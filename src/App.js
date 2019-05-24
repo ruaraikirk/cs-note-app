@@ -9,60 +9,59 @@ import { connect } from "react-redux";
 
 class App extends React.Component {
   constructor(props) {
-		super(props)
+    super(props);
 
-		this.state = {
-			displayedNote: "new",
-		}
-	}
+    this.state = {
+      displayedNote: "new"
+    };
+  }
 
-	componentDidMount() {
-		this.setState({
-			displayedNote: "new"
-		})
-	}
+  componentDidMount() {
+    this.setState({
+      displayedNote: "new"
+    });
+  }
 
-	componentDidUpdate(prevProps, prevState) {
-
-		if (prevProps.notes.length != this.props.notes.length) {
-			this.setState({
-				displayedNote: "new"
-			})
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.notes.length != this.props.notes.length) {
+      this.setState({
+        displayedNote: "new"
+      });
     }
+  }
 
-	}
-
-	selectNote = (event) => {
-    console.log('NOTE SELECTED')
-    console.log(typeof event.target.id, "Target ID: " + event.target.id)
-		let target_id = event.target.id
-		let selected = ""
-		if (target_id != "new") {
-			selected = this.props.notes.find((note) => {return note.id === target_id})
-			//selected = this.props.notes.find(x => x.id === target_id)
+  selectNote = event => {
+    console.log("NOTE SELECTED");
+    console.log(typeof event.target.id, "Target ID: " + event.target.id);
+    let target_id = event.target.id;
+    let selected = "";
+    if (target_id != "new") {
+      selected = this.props.notes.find(note => {
+        return note.id === target_id;
+      });
+      //selected = this.props.notes.find(x => x.id === target_id)
       //console.log("Selected: ", selected)
-			/*selected =  this.props.notes.find((note) => {
+      /*selected =  this.props.notes.find((note) => {
 				return note.id == target_id
 			})*/
-		} else {
-			selected = "new"
-		}
-		this.setState({
-			displayedNote: selected
-		})
+    } else {
+      selected = "new";
+    }
+    this.setState({
+      displayedNote: selected
+    });
+  };
 
-  }
-  
   render() {
     return (
       <div>
         CS NOTES
         <div>
-          <NoteEditor displayedNote={this.state.displayedNote}/>
+          <NoteEditor displayedNote={this.state.displayedNote} />
         </div>
         <div>
           <p>NOTE LIST CONTAINER</p>
-          <NoteListContainer selectNote={this.selectNote}/>
+          <NoteListContainer selectNote={this.selectNote} />
         </div>
       </div>
     );
@@ -73,8 +72,8 @@ class App extends React.Component {
 function mapStateToProps(state, props) {
   return {
     notes: state.notes.allNotes,
-		displayedNote: state.notes.displayedNote
-  }
+    displayedNote: state.notes.displayedNote
+  };
 }
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps)(App);
