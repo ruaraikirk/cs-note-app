@@ -9,7 +9,6 @@ class NoteListContainer extends React.Component {
 
   	componentDidUpdate(prevProps, prevState) {
       if (prevProps != this.props) {
-        console.log("Calling listAllNotes")
         this.listAllNotes()
       }
     }

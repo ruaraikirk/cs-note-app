@@ -23,13 +23,13 @@ class App extends React.Component {
 	}
 
 	componentDidUpdate(prevProps, prevState) {
-/*
+
 		if (prevProps.notes.length != this.props.notes.length) {
 			this.setState({
 				displayedNote: "new"
 			})
     }
-*/
+
 	}
 
 	selectNote = (event) => {
@@ -38,8 +38,9 @@ class App extends React.Component {
 		let target_id = event.target.id
 		let selected = ""
 		if (target_id != "new") {
-      selected = this.props.notes.find(x => x.id === target_id)
-      console.log("Selected: ", selected)
+			selected = this.props.notes.find((note) => {return note.id === target_id})
+			//selected = this.props.notes.find(x => x.id === target_id)
+      //console.log("Selected: ", selected)
 			/*selected =  this.props.notes.find((note) => {
 				return note.id == target_id
 			})*/
