@@ -11,6 +11,40 @@ class NoteEditor extends React.Component {
     this.onChange = editorState => this.setState({ editorState });
   }
 
+  componentDidMount() {
+    let displayedNote = this.props.displayedNote
+    if (typeof displayedNote == "object") {
+      this.setState({
+        editorState: EditorState.createWithContent(this.props.displayedNote.contentState)
+      })
+    } else {
+      console.log("New note being created")
+      this.setState({
+        noteTitle: "",
+        editorState: EditorState.createEmpty()
+      })
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.displayedNote != this.props.displayedNote) {
+      let displayedNote = this.props.displayedNote
+      if (typeof displayedNote == "object") {
+        let contentState = displayedNote.contentState
+        let persistedTitle = displayedNote.title
+        this.setState({
+          editorState: EditorState.createWithContent(contentState),
+          noteTitle: persistedTitle
+        })
+      } else {
+        this.setState({
+          noteTitle: "",
+          editorState: EditorState.createEmpty()
+        })
+      }
+    }
+  }
+
   submitEditor = () => {
     let id = uuidv1();
     let title = this.state.noteTitle;
