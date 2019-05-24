@@ -1,3 +1,28 @@
+import { combineReducers } from 'redux';
+import { CREATE_NOTE } from '../actions'
+
+const notes = (state = { allNotes: [] }, action) => {
+  switch(action.type) {
+    case CREATE_NOTE:
+      state = Object.assign({}, state, {
+        allNotes: state.allNotes.concat(action.payload)
+      });
+      return state;
+    default:
+    return state;
+
+  }
+
+};
+
+const rootReducer = combineReducers({
+  notes
+  // ,[ANOTHER REDUCER], [ANOTHER REDUCER] ....
+});
+
+export default rootReducer;
+
+/*
 import { CREATE_NOTE } from "../actions/index";
 
 function rootReducer(state = { allNotes: [] }, action) {
@@ -13,3 +38,4 @@ function rootReducer(state = { allNotes: [] }, action) {
 }
 
 export default rootReducer;
+*/

@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 
 import NoteEditor from "./components/NoteEditor";
+import NoteListContainer from "./components/noteList/NoteListContainer";
 
 class App extends React.Component {
   render() {
@@ -11,6 +12,10 @@ class App extends React.Component {
         CS NOTES
         <div>
           <NoteEditor />
+        </div>
+        <div>
+          <p>NOTE LIST CONTAINER</p>
+          <NoteListContainer />
         </div>
       </div>
     );
