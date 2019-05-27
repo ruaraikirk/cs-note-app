@@ -17,12 +17,14 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    console.log("App - componentDidMount() called...");
     this.setState({
       displayedNote: "new"
     });
   }
 
   componentDidUpdate(prevProps, prevState) {
+    console.log("App - componentDidUpdate() called...");
     if (prevProps.notes.length != this.props.notes.length) {
       this.setState({
         displayedNote: "new"
@@ -39,11 +41,6 @@ class App extends React.Component {
       selected = this.props.notes.find(note => {
         return note.id === target_id;
       });
-      //selected = this.props.notes.find(x => x.id === target_id)
-      //console.log("Selected: ", selected)
-      /*selected =  this.props.notes.find((note) => {
-				return note.id == target_id
-			})*/
     } else {
       selected = "new";
     }
@@ -52,10 +49,20 @@ class App extends React.Component {
     });
   };
 
+  createNewNote = () => {
+    console.log("App - createNewNote() called...");
+    this.setState({
+      displayedNote: "new"
+    })
+  };
+
   render() {
     return (
       <div>
         CS NOTES
+        <div>
+          <button onClick={this.createNewNote}>Create New</button>
+        </div>
         <div>
           <NoteEditor displayedNote={this.state.displayedNote} />
         </div>
@@ -68,7 +75,6 @@ class App extends React.Component {
   }
 }
 
-//export default App;
 function mapStateToProps(state, props) {
   return {
     notes: state.notes.allNotes,
