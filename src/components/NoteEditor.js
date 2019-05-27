@@ -7,8 +7,6 @@ import {
 } from "draft-js";
 import { connect } from "react-redux";
 import uuidv1 from "uuid";
-//import createNote from "../actions/index";
-//import * as Actions from "../actions/index";
 import { createNote, updateNote } from "../actions/index";
 
 class NoteEditor extends React.Component {
@@ -19,6 +17,7 @@ class NoteEditor extends React.Component {
   }
 
   componentDidMount() {
+    console.log("NoteEditor - componentDidMount() called...");
     let displayedNote = this.props.displayedNote;
     if (typeof displayedNote == "object") {
       this.setState({
@@ -27,7 +26,6 @@ class NoteEditor extends React.Component {
         )
       });
     } else {
-      console.log("New note being created");
       this.setState({
         noteTitle: "",
         editorState: EditorState.createEmpty()
@@ -36,9 +34,11 @@ class NoteEditor extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    console.log("NoteEditor - componentDidUpdate() called...");
+    console.log("prevProps.displayedNote: ", prevProps.displayedNote);
+    console.log("this.props.displayedNote: ", this.props.displayedNote);
     if (prevProps.displayedNote != this.props.displayedNote) {
       let displayedNote = this.props.displayedNote;
-      console.log("componentDidUpdate - displatedNote: ", displayedNote);
       if (typeof displayedNote == "object") {
         let contentState = displayedNote.contentState;
         let persistedTitle = displayedNote.title;
@@ -56,13 +56,13 @@ class NoteEditor extends React.Component {
   }
 
   submitEditor = () => {
+    console.log("NoteEditor - submitEditor() called...");
     let displayedNote = this.props.displayedNote;
-    console.log("State :", this.state);
-    console.log("disp[layedNote: ", displayedNote);
     if (typeof displayedNote == "object") {
       let id = this.props.displayedNote.id;
       let title = this.state.noteTitle;
       let contentState = this.state.editorState.getCurrentContent();
+      console.log("NoteEditor - updateNote()");
       this.props.updateNote({ id, title, contentState });
       /*this.setState({
         noteTitle: "",
@@ -72,42 +72,13 @@ class NoteEditor extends React.Component {
       let id = uuidv1();
       let title = this.state.noteTitle;
       let contentState = this.state.editorState.getCurrentContent();
+      console.log("NoteEditor - createNote()");
       this.props.createNote({ id, title, contentState });
       this.setState({
         noteTitle: "",
         editorState: EditorState.createEmpty()
       });
     }
-    /*let displayedNote = this.props.displayedNote
-    console.log("displayedNote: ", displayedNote)
-    let id = uuidv1();
-    let title = this.state.noteTitle;
-    let contentState = this.state.editorState.getCurrentContent();
-    let note = {
-      id: id,
-      title: this.state.noteTitle,
-      content: convertToRaw(contentState)
-    };
-    if (
-      this.state.noteTitle == "" ||
-      (note.content.blocks.length <= 1 &&
-        note.content.blocks[0].depth === 0 &&
-        note.content.blocks[0].text == "")
-    ) {
-      alert("Note cannot be saved if title or content is blank");
-    } else {
-      //this.props.createNote(note);
-      this.props.createNote({ id, title, contentState });
-      this.setState({
-        noteTitle: "",
-        editorState: EditorState.createEmpty()
-      });
-    }
-    /*this.props.createNote({ id, title, contentState });
-        this.setState({
-            noteTitle: "",
-            editorState: EditorState.createEmpty()
-        })*/
   };
 
   captureTitle = event => {
@@ -118,16 +89,16 @@ class NoteEditor extends React.Component {
     });
   };
 
-  createNewNote = () => {
-    console.log("Create new note function called");
-  };
+  /*createNewNote = () => {
+    console.log("NoteEditor - createNewNote() called...");
+  };*/
 
   render() {
     return (
       <div>
-        <div>
+        {/*<div>
           <button onClick={this.createNewNote}>Create New</button>
-        </div>
+        </div>*/}
         <span>
           <input
             type="text"
@@ -147,24 +118,11 @@ class NoteEditor extends React.Component {
   }
 }
 
-/*
-function mapDispatchToProps(dispatch) {
-  return {
-    createNote: note => dispatch(createNote(note))
-  };
-}
-
-export default connect(null, mapDispatchToProps)(NoteEditor)
-*/
 function mapStateToProps(state, props) {
   return {
     notes: state.notes.allNotes
   };
 }
-
-/*function mapDispatchToProps(dispatch) {
-  return bindActionCreators(Actions, dispatch);
-}*/
 
 function mapDispatchToProps(dispatch) {
   return {
