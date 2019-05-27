@@ -30,13 +30,8 @@ class NoteListContainer extends React.Component {
       return (
         <nav
           style={{
-            display: 'flex',
-            position: 'fixed',
-            flexDirection: 'column',
-            height: '100vh',
-            width: '260px',
             borderRight: '1px solid #ddd',
-            marginRight: '10px'
+            height: '100%'
           }}
         >
           <div>
@@ -47,18 +42,18 @@ class NoteListContainer extends React.Component {
     } else {
       return (
         <nav
-        style={{
-          display: 'flex',
-          position: 'fixed',
-          flexDirection: 'column',
-          height: '100vh',
-          width: '260px',
-          borderRight: '1px solid #ddd',
-          marginRight: '10px'
-        }}
+          style={{
+            borderRight: '1px solid #ddd',
+            height: '100%'
+          }}
         >
-          <span>
-            <h3>No notes yet...</h3>
+          <span
+            style={{
+              padding: '20px',
+              textAlign: 'center'
+            }}
+          >
+            <h4>No notes yet...</h4>
           </span>
         </nav>
       );

@@ -6,6 +6,14 @@ import NoteListContainer from "./components/noteList/NoteListContainer";
 
 import { connect } from "react-redux";
 
+import Button from 'react-bootstrap/Button';
+
+import {
+  Container, Row, Col, Form, Input, Navbar, Nav,
+  NavbarBrand, NavLink, NavItem, UncontrolledDropdown,
+  DropdownToggle, DropdownMenu, DropdownItem
+} from 'reactstrap';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -52,22 +60,20 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="App-container">
-          <header className="App-header">
-            <h2>🗒️ CS NOTE APP</h2>
-            <button onClick={this.createNewNote} style={{float:"right", cursor: 'pointer'}}>Create New</button>
-          </header>
-          <section className="App-body">
-            <div className="App-list">
-              <NoteListContainer selectNote={this.selectNote} />
-            </div>
-            <div className="App-editor">
-              <NoteEditor displayedNote={this.state.displayedNote} />
-            </div>
-          </section>
-        </div>
-      </div>
+    <div>
+      <Container className="App-header">
+        <Row>
+          <Col xs={6} md={8}><h3>🗒️ Notes</h3></Col>
+          <Col xs={6} md={4}><Button variant="outline-primary" onClick={this.createNewNote} style={{float: 'right', cursor: 'pointer'}}>+ Create</Button></Col>
+        </Row>
+      </Container>
+      <Container style={{height: '100vh'}}>
+          <Row style={{height: '100%'}} >
+            <Col lg={4} md={3}><NoteListContainer selectNote={this.selectNote} /></Col>
+            <Col lg={8} md={9}><NoteEditor displayedNote={this.state.displayedNote}/></Col>
+          </Row>
+      </Container>
+    </div>
     );
   }
 }

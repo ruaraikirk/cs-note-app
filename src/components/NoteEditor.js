@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import uuidv1 from "uuid";
 import { createNote, updateNote } from "../actions/index";
 import "./RichEditor.css";
+import Button from 'react-bootstrap/Button';
 
 class NoteEditor extends React.Component {
   constructor(props) {
@@ -169,9 +170,14 @@ class NoteEditor extends React.Component {
               spellCheck={true}
             />
           </div>
-          <button style={{ float: "right", cursor: 'pointer' }} onClick={this.submitEditor}>
+          <Button 
+            variant="primary" 
+            onClick={this.submitEditor}
+            style={{position: 'fixed', bottom: '40px', right: '40px', cursor: 'pointer'}}
+            //disabled={this.state.isDisabled}
+          >
             Save
-          </button>
+          </Button>
         </div>
       </div>
     );
