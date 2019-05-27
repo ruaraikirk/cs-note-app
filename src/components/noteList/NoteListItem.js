@@ -11,7 +11,8 @@ class NoteListItem extends React.Component {
           width: 'auto',
           display: 'flex',
           flexDirection: 'row',
-          justifyContent: 'space-between'
+          justifyContent: 'space-between',
+          cursor: 'pointer'
         }}
       >
         <div
@@ -27,7 +28,10 @@ class NoteListItem extends React.Component {
             lineHeight: '45px',
             whiteSpace: 'nowrap',
             borderBottom: '1px solid #ddd',
-            width: '100%'
+            width: '100%',
+            ':hover': {
+              boxShadow: '0 0 22px 0 rgba(0, 0, 0, 0.10)'
+            }
           }}
         >
           {this.props.note.title}

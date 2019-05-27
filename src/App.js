@@ -56,7 +56,7 @@ class App extends React.Component {
         <div className="App-container">
           <header className="App-header">
             <h2>🗒️ CS NOTE APP</h2>
-            <button onClick={this.createNewNote} style={{float:"right"}}>Create New</button>
+            <button onClick={this.createNewNote} style={{float:"right", cursor: 'pointer'}}>Create New</button>
           </header>
           <section className="App-body">
             <div className="App-list">

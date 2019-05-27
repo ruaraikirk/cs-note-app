@@ -169,7 +169,7 @@ class NoteEditor extends React.Component {
               spellCheck={true}
             />
           </div>
-          <button style={{ float: "right" }} onClick={this.submitEditor}>
+          <button style={{ float: "right", cursor: 'pointer' }} onClick={this.submitEditor}>
             Save
           </button>
         </div>
