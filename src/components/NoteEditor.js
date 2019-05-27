@@ -1,10 +1,16 @@
 import React from "react";
-import { Editor, EditorState, RichUtils, getDefaultKeyBinding, convertToRaw } from "draft-js";
+import {
+  Editor,
+  EditorState,
+  RichUtils,
+  getDefaultKeyBinding,
+  convertToRaw
+} from "draft-js";
 import { connect } from "react-redux";
 import uuidv1 from "uuid";
 import { createNote, updateNote } from "../actions/index";
 import "./RichEditor.css";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 
 class NoteEditor extends React.Component {
   constructor(props) {
@@ -24,13 +30,15 @@ class NoteEditor extends React.Component {
     if (typeof displayedNote == "object") {
       this.setState({
         editorState: EditorState.createWithContent(
-          this.props.displayedNote.contentState
-        )
+          this.props.displayedNote.contentState()
+        ),
+        isDisabled: true
       });
     } else {
       this.setState({
         noteTitle: "",
-        editorState: EditorState.createEmpty()
+        editorState: EditorState.createEmpty(),
+        isDisabled: false
       });
     }
   }
@@ -60,8 +68,13 @@ class NoteEditor extends React.Component {
     let title = this.state.noteTitle;
     let contentState = this.state.editorState.getCurrentContent();
     let content = convertToRaw(contentState);
-    if (this.state.noteTitle == "" || (content.blocks.length <= 1 && content.blocks[0].depth === 0 && content.blocks[0].text == "")) {
-      alert("Note cannot be saved if title or content is blank")
+    if (
+      this.state.noteTitle == "" ||
+      (content.blocks.length <= 1 &&
+        content.blocks[0].depth === 0 &&
+        content.blocks[0].text == "")
+    ) {
+      alert("Note cannot be saved if title or content is blank");
     } else {
       if (typeof displayedNote == "object") {
         let id = this.props.displayedNote.id;
@@ -83,7 +96,8 @@ class NoteEditor extends React.Component {
     event.preventDefault();
     let value = event.target.value;
     this.setState({
-      noteTitle: value
+      noteTitle: value,
+      isDisabled: false
     });
   };
 
@@ -170,11 +184,16 @@ class NoteEditor extends React.Component {
               spellCheck={true}
             />
           </div>
-          <Button 
-            variant="primary" 
+          <Button
+            variant="primary"
             onClick={this.submitEditor}
-            style={{position: 'fixed', bottom: '40px', right: '40px', cursor: 'pointer'}}
-            //disabled={this.state.isDisabled}
+            style={{
+              position: "fixed",
+              bottom: "40px",
+              right: "40px",
+              cursor: "pointer"
+            }}
+            disabled={this.state.isDisabled}
           >
             Save
           </Button>

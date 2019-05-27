@@ -1,7 +1,5 @@
 import React from "react";
-import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import * as Actions from "../../actions";
 import NoteListItem from "./NoteListItem";
 
 class NoteListContainer extends React.Component {
@@ -30,27 +28,27 @@ class NoteListContainer extends React.Component {
       return (
         <nav
           style={{
-            borderRight: '1px solid #ddd',
-            height: '100%'
+            borderRight: "1px solid #ddd",
+            borderBottom: "1px solid #ddd",
+            height: "100%"
           }}
         >
-          <div>
-          {this.listAllNotes()}
-          </div>
+          <div>{this.listAllNotes()}</div>
         </nav>
       );
     } else {
       return (
         <nav
           style={{
-            borderRight: '1px solid #ddd',
-            height: '100%'
+            borderRight: "1px solid #ddd",
+            borderBottom: "1px solid #ddd",
+            height: "100%"
           }}
         >
           <span
             style={{
-              padding: '20px',
-              textAlign: 'center'
+              padding: "20px",
+              textAlign: "center"
             }}
           >
             <h4>No notes yet...</h4>

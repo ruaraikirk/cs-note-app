@@ -6,13 +6,24 @@ import NoteListContainer from "./components/noteList/NoteListContainer";
 
 import { connect } from "react-redux";
 
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 
 import {
-  Container, Row, Col, Form, Input, Navbar, Nav,
-  NavbarBrand, NavLink, NavItem, UncontrolledDropdown,
-  DropdownToggle, DropdownMenu, DropdownItem
-} from 'reactstrap';
+  Container,
+  Row,
+  Col,
+  Form,
+  Input,
+  Navbar,
+  Nav,
+  NavbarBrand,
+  NavLink,
+  NavItem,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from "reactstrap";
 
 class App extends React.Component {
   constructor(props) {
@@ -60,20 +71,34 @@ class App extends React.Component {
 
   render() {
     return (
-    <div>
-      <Container className="App-header">
-        <Row>
-          <Col xs={6} md={8}><h3>🗒️ Notes</h3></Col>
-          <Col xs={6} md={4}><Button variant="outline-primary" onClick={this.createNewNote} style={{float: 'right', cursor: 'pointer'}}>+ Create</Button></Col>
-        </Row>
-      </Container>
-      <Container style={{height: '100vh'}}>
-          <Row style={{height: '100%'}} >
-            <Col lg={4} md={3}><NoteListContainer selectNote={this.selectNote} /></Col>
-            <Col lg={8} md={9}><NoteEditor displayedNote={this.state.displayedNote}/></Col>
+      <div>
+        <Container className="App-header">
+          <Row>
+            <Col xs={6} md={8}>
+              <h3>🗒️ Notes</h3>
+            </Col>
+            <Col xs={6} md={4}>
+              <Button
+                variant="outline-primary"
+                onClick={this.createNewNote}
+                style={{ float: "right", cursor: "pointer" }}
+              >
+                + Create
+              </Button>
+            </Col>
           </Row>
-      </Container>
-    </div>
+        </Container>
+        <Container style={{ height: "100vh" }}>
+          <Row style={{ height: "100%" }}>
+            <Col lg={4} md={3} md={{ order: 1 }} xs={{ order: 2 }}>
+              <NoteListContainer selectNote={this.selectNote} />
+            </Col>
+            <Col lg={8} md={9} md={{ order: 2 }} xs={{ order: 1 }}>
+              <NoteEditor displayedNote={this.state.displayedNote} />
+            </Col>
+          </Row>
+        </Container>
+      </div>
     );
   }
 }
