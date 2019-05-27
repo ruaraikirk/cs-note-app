@@ -6,6 +6,10 @@ import NoteListContainer from "./components/noteList/NoteListContainer";
 
 import { connect } from "react-redux";
 
+import Button from 'react-bootstrap/Button';
+//import { Button, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+//import { Button } from 'react-bootstrap';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -52,22 +56,17 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="App-container">
-          <header className="App-header">
-            <h2>🗒️ CS NOTE APP</h2>
-            <button onClick={this.createNewNote} style={{float:"right"}}>Create New</button>
-          </header>
-          <section className="App-body">
-            <div className="App-list">
-              <NoteListContainer selectNote={this.selectNote} />
-            </div>
-            <div className="App-editor">
-              <NoteEditor displayedNote={this.state.displayedNote} />
-            </div>
-          </section>
-        </div>
-      </div>
+      <Container>
+  {/* Stack the columns on mobile by making one full-width and the other half-width */}
+  <Row>
+    <Col xs={12} md={8}>
+      xs=12 md=8
+    </Col>
+    <Col xs={6} md={4}>
+      xs=6 md=4
+    </Col>
+  </Row>
+  </Container>
     );
   }
 }
