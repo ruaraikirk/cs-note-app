@@ -1,11 +1,29 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 
 import NoteEditor from "./components/NoteEditor";
 import NoteListContainer from "./components/noteList/NoteListContainer";
 
 import { connect } from "react-redux";
+
+import Button from "react-bootstrap/Button";
+
+import {
+  Container,
+  Row,
+  Col,
+  Form,
+  Input,
+  Navbar,
+  Nav,
+  NavbarBrand,
+  NavLink,
+  NavItem,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from "reactstrap";
 
 class App extends React.Component {
   constructor(props) {
@@ -17,14 +35,12 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log("App - componentDidMount() called...");
     this.setState({
       displayedNote: "new"
     });
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log("App - componentDidUpdate() called...");
     if (prevProps.notes.length != this.props.notes.length) {
       this.setState({
         displayedNote: "new"
@@ -33,8 +49,6 @@ class App extends React.Component {
   }
 
   selectNote = event => {
-    console.log("NOTE SELECTED");
-    console.log(typeof event.target.id, "Target ID: " + event.target.id);
     let target_id = event.target.id;
     let selected = "";
     if (target_id != "new") {
@@ -50,26 +64,40 @@ class App extends React.Component {
   };
 
   createNewNote = () => {
-    console.log("App - createNewNote() called...");
     this.setState({
       displayedNote: "new"
-    })
+    });
   };
 
   render() {
     return (
       <div>
-        CS NOTES
-        <div>
-          <button onClick={this.createNewNote}>Create New</button>
-        </div>
-        <div>
-          <NoteEditor displayedNote={this.state.displayedNote} />
-        </div>
-        <div>
-          <p>NOTE LIST CONTAINER</p>
-          <NoteListContainer selectNote={this.selectNote} />
-        </div>
+        <Container className="App-header">
+          <Row>
+            <Col xs={6} md={8}>
+              <h3>🗒️ Notes</h3>
+            </Col>
+            <Col xs={6} md={4}>
+              <Button
+                variant="outline-primary"
+                onClick={this.createNewNote}
+                style={{ float: "right", cursor: "pointer" }}
+              >
+                + Create
+              </Button>
+            </Col>
+          </Row>
+        </Container>
+        <Container style={{ height: "100vh" }}>
+          <Row style={{ height: "100%" }}>
+            <Col lg={4} md={3} md={{ order: 1 }} xs={{ order: 2 }}>
+              <NoteListContainer selectNote={this.selectNote} />
+            </Col>
+            <Col lg={8} md={9} md={{ order: 2 }} xs={{ order: 1 }}>
+              <NoteEditor displayedNote={this.state.displayedNote} />
+            </Col>
+          </Row>
+        </Container>
       </div>
     );
   }
