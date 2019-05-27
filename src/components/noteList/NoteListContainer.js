@@ -28,16 +28,40 @@ class NoteListContainer extends React.Component {
   render() {
     if (this.props.notes.length > 0) {
       return (
-        <div>
-          <span>
-            <h3>All Notes</h3>
-          </span>
-
-          <div>{this.listAllNotes()}</div>
-        </div>
+        <nav
+          style={{
+            display: 'flex',
+            position: 'fixed',
+            flexDirection: 'column',
+            height: '100vh',
+            width: '260px',
+            borderRight: '1px solid #ddd',
+            marginRight: '10px'
+          }}
+        >
+          <div>
+          {this.listAllNotes()}
+          </div>
+        </nav>
       );
     } else {
-      return <div>No Notes Saved Yet</div>;
+      return (
+        <nav
+        style={{
+          display: 'flex',
+          position: 'fixed',
+          flexDirection: 'column',
+          height: '100vh',
+          width: '260px',
+          borderRight: '1px solid #ddd',
+          marginRight: '10px'
+        }}
+        >
+          <span>
+            <h3>No notes yet...</h3>
+          </span>
+        </nav>
+      );
     }
   }
 }

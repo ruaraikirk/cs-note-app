@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 
 import NoteEditor from "./components/NoteEditor";
@@ -17,14 +16,12 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log("App - componentDidMount() called...");
     this.setState({
       displayedNote: "new"
     });
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log("App - componentDidUpdate() called...");
     if (prevProps.notes.length != this.props.notes.length) {
       this.setState({
         displayedNote: "new"
@@ -33,8 +30,6 @@ class App extends React.Component {
   }
 
   selectNote = event => {
-    console.log("NOTE SELECTED");
-    console.log(typeof event.target.id, "Target ID: " + event.target.id);
     let target_id = event.target.id;
     let selected = "";
     if (target_id != "new") {
@@ -50,25 +45,27 @@ class App extends React.Component {
   };
 
   createNewNote = () => {
-    console.log("App - createNewNote() called...");
     this.setState({
       displayedNote: "new"
-    })
+    });
   };
 
   render() {
     return (
-      <div>
-        CS NOTES
-        <div>
-          <button onClick={this.createNewNote}>Create New</button>
-        </div>
-        <div>
-          <NoteEditor displayedNote={this.state.displayedNote} />
-        </div>
-        <div>
-          <p>NOTE LIST CONTAINER</p>
-          <NoteListContainer selectNote={this.selectNote} />
+      <div className="App">
+        <div className="App-container">
+          <header className="App-header">
+            <h2>🗒️ CS NOTE APP</h2>
+            <button onClick={this.createNewNote} style={{float:"right"}}>Create New</button>
+          </header>
+          <section className="App-body">
+            <div className="App-list">
+              <NoteListContainer selectNote={this.selectNote} />
+            </div>
+            <div className="App-editor">
+              <NoteEditor displayedNote={this.state.displayedNote} />
+            </div>
+          </section>
         </div>
       </div>
     );

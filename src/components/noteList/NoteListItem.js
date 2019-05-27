@@ -6,13 +6,43 @@ import * as Actions from "../../actions";
 class NoteListItem extends React.Component {
   render() {
     return (
-      <div
-        id={this.props.note.id}
-        key={this.props.note.id}
-        onClick={this.props.selectNote}
+      <nav
+        style={{
+          width: 'auto',
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between'
+        }}
       >
-        {this.props.note.title}
-      </div>
+        <div
+          id={this.props.note.id}
+          key={this.props.note.id}
+          onClick={this.props.selectNote}
+          style={{
+            float: 'left',
+            clear: 'both',
+            position: 'relative',
+            fontSize: 18,
+            height: 45,
+            lineHeight: '45px',
+            whiteSpace: 'nowrap',
+            borderBottom: '1px solid #ddd',
+            width: '100%'
+          }}
+        >
+          {this.props.note.title}
+        </div>
+        <div
+          style={{
+            fontSize: 18,
+            height: 45,
+            lineHeight: '45px',
+            whiteSpace: 'nowrap',
+            borderBottom: '1px solid #ddd',
+            paddingRight:'2px'
+          }}
+        >></div>
+      </nav>
     );
   }
 }
