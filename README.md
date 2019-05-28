@@ -24,13 +24,13 @@ Frontend
 
 ## Notes and points for improvement/further work
 * Left Nav List
+  * Would ideally be implementing a burger menu for mobile device
   * Hover affect not functioning
 ```
 ":hover": {
               boxShadow: "0 0 22px 0 rgba(0, 0, 0, 0.10)"
             }
 ```
-  * Would ideally be implementing a burger menu for mobile device
 * Save Button
   * Currently the requirement for 'save button has to detect changes, and if there isn't any changes, it has to be disabled.' is not fully implemented.
 * Pure CSS has been used in conjunction with Bootstrap. Minimal experience with LESS/SASS to date.
